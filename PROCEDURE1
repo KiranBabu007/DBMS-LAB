@@ -1,0 +1,18 @@
+create or replace procedure welcome(str varchar2) is
+begin
+if str='name' then
+ dbms_output.Put_line('Hearty Welcome');
+elsif str='phone' then
+ dbms_output.put_line('Contact me');
+else
+ dbms_output.put_line('Pani Paali');
+end if;
+end welcome;
+
+set serveroutput on;
+
+declare
+str varchar2(20):='&str';
+begin
+welcome(str);
+end;
