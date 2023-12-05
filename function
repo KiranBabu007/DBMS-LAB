@@ -1,0 +1,20 @@
+create or replace package pk1 as
+function fn(a number,b number,c number) return number;
+end pk1;
+
+create or replace package body pk1 as
+function fn(a number,b number,c number) return number is
+begin
+return (a+b+c);
+end fn;
+end pk1;
+
+declare 
+a number:=&a;
+b number:=&b;
+c number:=&c;
+res number;
+begin
+res:=pk1.fn(a,b,c);
+dbms_output.put_line('Result is:'||res);
+end;
