@@ -1,0 +1,32 @@
+--A Table Employeee must be created
+--
+--Trigger 1 displays a msg when inserting
+--Trigger 2 changes count value in emp_count when inserting and deleting
+
+
+Create or replace trigger ins
+before insert on Employee
+for each row
+begin
+dbms_output.put_line('row Added');
+end;
+
+
+
+create table emp_count(cnt int);
+
+insert into emp_count values(0);
+
+select * from emp_count;
+
+create or replace trigger cnt
+before insert or delete on employee
+begin
+if deleting then update emp_count set cnt=cnt-1;
+else
+update emp_count set cnt=cnt+1;
+end if;
+end;
+
+insert into employee values(8888,'Kiran',8283);
+delete from Employee where emp_name='Kiran';
