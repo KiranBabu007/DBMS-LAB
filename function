@@ -1,3 +1,7 @@
+//A function is written inside a package,the fn takes 3 numbers and return its sum
+
+
+
 create or replace package pk1 as
 function fn(a number,b number,c number) return number;
 end pk1;
