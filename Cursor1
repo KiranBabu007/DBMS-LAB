@@ -1,0 +1,24 @@
+create Table bank(accno int primary key,name varchar(20),balance int,adate date);
+
+insert into bank Values(1,'Kiran',800,'12-11-2003');
+insert into bank Values(2,'Kiran',1000,'12-11-2003');
+insert into bank Values(3,'Kiran',2000,'12-11-2003');
+insert into bank Values(4,'Kiran',500,'12-11-2003');
+
+create table banknew(accno int,intr int);
+
+declare cursor temp is
+select accno,balance from bank;
+begin
+for i in temp
+loop
+ insert into banknew values(i.accno,i.balance*0.8);
+end loop;
+end;
+
+
+select * from banknew;
+drop table bank;
+
+truncate table banknew;
+
