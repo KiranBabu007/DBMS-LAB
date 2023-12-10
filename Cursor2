@@ -1,0 +1,33 @@
+Create table student10 (id int,name varchar(30),m1 int,m2 int,m3 int,grade varchar(10));
+insert into student10(id,name,m1,m2,m3) values(1,'allen',40,60,50);
+insert into student10(id,name,m1,m2,m3) values(2,'adi',47,54,34);
+insert into student10(id,name,m1,m2,m3) values(3,'binu',70,90,80);
+insert into student10(id,name,m1,m2,m3) values(4,'ciju',76,32,46);
+insert into student10(id,name,m1,m2,m3) values(5,'dinu',49,70,67);
+
+
+declare cursor grd is
+select * from student10;
+t grd%ROWTYPE;
+tot number;
+grad varchar(20);
+begin
+open grd;
+LOOP
+fetch grd into t;
+exit when grd%NOTFOUND;
+tot:=t.m1+t.m2+t.m3;
+
+  IF (tot / 3) > 80 THEN
+         grad := 'A';
+      ELSIF (tot / 3) > 70 THEN
+         grad := 'B';
+      ELSIF (tot / 3) > 60 THEN
+         grad := 'C';
+      ELSE
+         grad := 'D';
+      END IF;
+      update student10 set grade=grad where id=t.id;
+end loop;
+close grd;
+end;
