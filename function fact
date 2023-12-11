@@ -1,0 +1,17 @@
+set serverout on;
+
+create or replace function fact(n int)
+return int as
+fact int:=1;
+begin
+for i in 1..n loop
+fact:=fact*i;
+end loop;
+return fact;
+end;
+
+declare
+n number:=&n;
+begin
+dbms_output.put_line('factorial of '||n||' is '||fact(n));
+end;
