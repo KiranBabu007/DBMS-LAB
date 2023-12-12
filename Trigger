@@ -12,7 +12,6 @@ dbms_output.put_line('row Added');
 end;
 
 
-
 create table emp_count(cnt int);
 
 insert into emp_count values(0);
